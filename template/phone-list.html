@@ -1,0 +1,27 @@
+<section class="phone_list">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<input type="text" ng-model="inputSearch" placeholder="Search for device">
+				<select name="sortBy" ng-model="sortBy">
+					<option value="">Select order</option>
+					<option value="name">По имени</option>
+					<option value="age">По дате</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="item col-lg-4 col-sm-6 col-xs-12 animate-repeat" ng-repeat="phone in phones | filter:inputSearch  | orderBy : sortBy">
+				<div class="preview_img text-center">
+					<img ng-src="{{phone.imageUrl}}" alt="phone.name">
+									<span class="label"
+				ng-init="status = phone.status ?  'Есть в наличии' : 'Под заказ'"
+				ng-class="{'label-success':phone.status , 'label-warning':!phone.status}">{{status}}</span>
+				</div>
+				<h2>{{phone.name}}</h2>
+				<p>{{phone.snippet}}</p>
+				<p><a href="#/phones/{{phone.id}}" class="btn btn-default">Подробней</a></p>
+			</div>	  
+		</div>
+	</div>
+</section>
